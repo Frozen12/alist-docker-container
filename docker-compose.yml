@@ -1,0 +1,21 @@
+version: '3'
+services:
+  cloudreve:
+    image: xxx/alist
+    container_name: alist
+    volumes:
+      - ./work_dir:/alist/alist
+    ports:
+      - "127.0.0.1:5244:5244"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "3"
+    restart: unless-stopped
+    networks:
+      - docker-net
+
+networks:
+  docker-net:
+    external: true
